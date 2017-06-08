@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setUsername, setPassword, login } from '../actions/auth'
+import { login } from '../actions/auth'
 
 class Login extends Component {
+  login() {
+    this.props.dispatch(login(this.state.username, this.state.password))
+  }
+
   render() {
-    const { dispatch, auth: { username, password, loggingIn }} = this.props
+    const { auth: { loggingIn }} = this.props
     return (
       <div className="Login">
         <div>
-          <input placeholder="username"
-            onChange={e => dispatch(setUsername(e.target.value))}/>
+          <input placeholder="username" disabled={loggingIn ? true : false}
+            onChange={e => this.setState({ username: e.target.value})}/>
         </div>
         <div>
-          <input placeholder="password" type="password"
-            onChange={e => dispatch(setPassword(e.target.value))}/>
+          <input placeholder="password" type="password" disabled={loggingIn ? true : false}
+            onChange={e => this.setState({ password: e.target.value})}/>
         </div>
         <div>
           <button disabled={loggingIn ? true : false}
-            onClick={e => dispatch(login(username, password))}>login</button>
+            onClick={this.login.bind(this)}>login</button>
         </div>
       </div>
     )

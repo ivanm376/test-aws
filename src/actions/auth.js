@@ -4,10 +4,7 @@ import AWS from 'aws-sdk'
 import { CognitoUserPool, AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js'
 AWS.config.region = config.region
 
-export const setUsername = value => ({ type: 'SET_USERNAME', value })
-export const setPassword = value => ({ type: 'SET_PASSWORD', value })
 const loginFail = value => ({ type: 'LOGIN_FAIL', value })
-
 const getCredentials = idToken => dispatch => {
   dispatch({ type: 'LOGIN_CREDENTIALS' })
   const Logins = {}
@@ -33,8 +30,9 @@ const getCredentials = idToken => dispatch => {
       dispatch({ type: 'LOGIN_SUCCESS' })
       dispatch({ type: 'RECEIVING_IDENTITY_DATA' })
       apigClient.identityGet().then(result => dispatch({
-        type: 'RECEIVING_IDENTITY_DATA_SUCCESS', value: JSON.stringify(result.data) })
-      ).catch(err => dispatch({ type: 'RECEIVING_IDENTITY_DATA_FAIL', value: err.toString() }))
+        type: 'RECEIVING_IDENTITY_DATA_SUCCESS',
+        value: JSON.stringify(result.data)
+      })).catch(err => dispatch({ type: 'RECEIVING_IDENTITY_DATA_FAIL', value: err.toString() }))
     }
   })
 }
