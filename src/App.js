@@ -24,7 +24,8 @@ class App extends Component {
               <div>Test Application</div>
               <div className="loggedInAs">
                 <div>{cognitoUser && (loggingIn ? 'Logging' : 'Logged') + ' in as: ' + cognitoUser.username}</div>
-                {!loggingIn && (cognitoUser ? <Link to="/signout">Sign Out</Link> : <Link to="/login">Login</Link>)}
+                {!loggingIn && (cognitoUser ? <Link to="/signout">Log Out</Link>
+                                            : <Link to="/login">Login</Link>)}
                 {pathname !== '/' &&  <Link to="/">Back</Link>}
               </div>
             </div>

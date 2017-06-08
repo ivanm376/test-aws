@@ -51,10 +51,10 @@ apigClientFactory.newClient = function (config) {
         config.defaultAcceptType = 'application/json';
     }
 
-    
+
     // extract endpoint and path from url
-    var invokeUrl = 'https://aslsgob139.execute-api.us-east-1.amazonaws.com/reactTest'; // test
-//     var invokeUrl = 'https://26kbr00i6d.execute-api.us-west-2.amazonaws.com/teststage';
+    // var invokeUrl = 'https://aslsgob139.execute-api.us-east-1.amazonaws.com/reactTest'; // test
+    var invokeUrl = 'https://26kbr00i6d.execute-api.us-west-2.amazonaws.com/teststage';
     var endpoint = /(^https?:\/\/[^\/]+)/g.exec(invokeUrl)[1];
     var pathComponent = invokeUrl.substring(endpoint.length);
 
@@ -81,14 +81,14 @@ apigClientFactory.newClient = function (config) {
     };
 
     var apiGatewayClient = apiGateway.core.apiGatewayClientFactory.newClient(simpleHttpClientConfig, sigV4ClientConfig);
-    
-    
-    
+
+
+
     apigClient.identityGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
-        
+
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
-        
+
         var identityGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/identity').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
@@ -96,17 +96,17 @@ apigClientFactory.newClient = function (config) {
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
-        
-        
+
+
         return apiGatewayClient.makeRequest(identityGetRequest, authType, additionalParams, config.apiKey);
     };
-    
-    
+
+
     apigClient.identityOptions = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
-        
+
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
-        
+
         var identityOptionsRequest = {
             verb: 'options'.toUpperCase(),
             path: pathComponent + uritemplate('/identity').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
@@ -114,17 +114,17 @@ apigClientFactory.newClient = function (config) {
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
-        
-        
+
+
         return apiGatewayClient.makeRequest(identityOptionsRequest, authType, additionalParams, config.apiKey);
     };
-    
-    
+
+
     apigClient.identity2Get = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
-        
+
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
-        
+
         var identity2GetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/identity2').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
@@ -132,17 +132,17 @@ apigClientFactory.newClient = function (config) {
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
-        
-        
+
+
         return apiGatewayClient.makeRequest(identity2GetRequest, authType, additionalParams, config.apiKey);
     };
-    
-    
+
+
     apigClient.identity2Options = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
-        
+
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
-        
+
         var identity2OptionsRequest = {
             verb: 'options'.toUpperCase(),
             path: pathComponent + uritemplate('/identity2').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
@@ -150,11 +150,11 @@ apigClientFactory.newClient = function (config) {
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
-        
-        
+
+
         return apiGatewayClient.makeRequest(identity2OptionsRequest, authType, additionalParams, config.apiKey);
     };
-    
+
 
     return apigClient;
 };

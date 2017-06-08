@@ -63,3 +63,9 @@
 .loggedInAs > a {
   display: block;
 }
+
+@media (max-width: 600px) {
+  .loggedInAs {
+    width: 120px;
+  }
+}

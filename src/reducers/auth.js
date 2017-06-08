@@ -1,65 +1,28 @@
 export default (state = {}, action) => {
-  switch (action.type) {
-    case 'SET_USERNAME':
-      return Object.assign({}, state, {
-        username: action.value,
-      })
-    case 'SET_PASSWORD':
-      return Object.assign({}, state, {
-        password: action.value,
-      })
-    case 'LOGIN':
-      return Object.assign({}, state, {
-        loggingIn: true,
-      })
-    case 'SET_COGNITO_USER':
-      return Object.assign({}, state, {
-        cognitoUser: action.value
-      })
-    case 'RECEIVING_CREDENTIALS':
-      return Object.assign({}, state, {
-        loggingIn: true,
-        receivingCredentials: action.value
-      })
-    case 'RECEIVING_IDENTITY_DATA':
-      return Object.assign({}, state, {
-        receivingIdentityData: true,
-      })
-    case 'RECEIVING_IDENTITY_DATA_SUCCESS':
-      return Object.assign({}, state, {
-        identityData: action.value,
-        receivingIdentityData: false,
-      })
-    case 'RECEIVING_IDENTITY_DATA_FAIL':
-      return Object.assign({}, state, {
-        receivingIdentityData: false,
-        receivingIdentityDataError: 'Error: Identity data receiving error'
-      })
-    case 'LOGIN_SUCCESS':
-      return Object.assign({}, state, {
-        loggingIn: false,
-        receivingCredentials: false,
-        loginError: '',
-      })
-    case 'LOGIN_FAIL':
-      return Object.assign({}, state, {
-        loggingIn: false,
-        cognitoUser: '',
-        receivingCredentials: false,
-        loginError: action.value,
-      })
-    case 'LOGOUT':
-      return Object.assign({}, state, {
-        loggingIn: false,
-        cognitoUser: '',
-        identityData: '',
-        loginError: '',
-      })
-    case 'SET_LOGIN_ERROR':
-      return Object.assign({}, state, {
-        loginError: action.value,
-      })
-    default:
-      return state
+  const types = {
+    SET_USERNAME:  { username: action.value },
+    SET_PASSWORD:  { password: action.value },
+
+    LOGIN:             { loggingIn: true },
+    LOGIN_CREDENTIALS: { receivingCredentials: true },
+    LOGIN_SUCCESS:     { loggingIn: false, receivingCredentials: false, loginError: '' },
+    LOGIN_FAIL:        { loggingIn: false, receivingCredentials: false, loginError: action.value, cognitoUser: '' },
+    LOGOUT:            { loggingIn: false, cognitoUser: '', identityData: '', loginError: '' },
+
+
+    SET_COGNITO_USER: { cognitoUser: action.value },
+
+    RECEIVING_IDENTITY_DATA:         { receivingIdentityData: true },
+    RECEIVING_IDENTITY_DATA_SUCCESS: { receivingIdentityData: false, identityData: action.value  },
+    RECEIVING_IDENTITY_DATA_FAIL:    { receivingIdentityData: false,
+      receivingIdentityDataError: action.value || 'Error: Identity data receiving error' },
+    SET_LOGIN_ERROR: { loginError: action.value },
   }
+
+  const update = types[action.type]
+  if (update) {
+    return Object.assign({}, state, update)
+  }
+
+  return state
 }
