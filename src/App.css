@@ -1,0 +1,65 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-childs, .App-data {
+  padding: 15px 0;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-body {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.App-intro {
+  padding: 15px;
+  font-size: large;
+}
+
+.App-intro > div {
+  padding: 15px;
+  font-size: large;
+}
+
+.App-intro > a {
+  padding: 15px 5px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.Login {
+  max-width: 180px;
+  text-align: right;
+  margin: 0 auto;
+  line-height: 31px;
+}
+
+.error {
+  text-align: center;
+  color: red;
+}
+
+.loggedInAs {
+  text-align: right;
+  float: right;
+  margin: -21px 0 0 0;
+}
+
+.loggedInAs > a {
+  display: block;
+}
