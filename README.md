@@ -1,14 +1,14 @@
-#Test-app
+# Test-app
 
-##Initialization
+## Initialization
 
 >npm install
 
-##Running dev-server
+## Running dev-server
 
 >BROWSER=none npm start
 
-##Running prod-server
+## Running prod-server
 
 >npm run build
 >node src/server.js
